@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>//CodeBreaker — Gamuda Hackathon AI War Room</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-badge">//</div>
+          <div>
+            <div class="brand-title">//CodeBreaker</div>
+            <div class="brand-subtitle">
+              Gamuda 48h Hackathon · CodeKeeper · J_SON · CodeZero
+            </div>
+          </div>
+        </div>
+
+        <nav class="topbar-center">
+          <button class="nav-pill active" data-view="chat" id="tab-chat">
+            💬 Message Board
+          </button>
+          <button class="nav-pill" data-view="files" id="tab-files">
+            📎 AI File Scanner <span class="pill-count" id="files-count">0</span>
+          </button>
+          <button class="nav-pill" data-view="ideas" id="tab-ideas">
+            💡 Idea Lab <span class="pill-count" id="ideas-count">0</span>
+          </button>
+          <button class="nav-pill" data-view="tasks" id="tab-tasks">
+            📋 Sprint Board <span class="pill-count" id="tasks-count">0</span>
+          </button>
+        </nav>
+
+        <div class="topbar-right">
+          <button
+            class="timer-pill"
+            id="btn-timer"
+            title="Start or reset synced 48-hour hackathon countdown"
+          >
+            ⏱️ <span id="timer-display">Warmup Mode</span>
+          </button>
+
+          <button
+            class="ai-key-pill"
+            id="btn-ai-key"
+            title="Configure Gemini 3.8 Flash API Key"
+          >
+            🔑 <span id="ai-key-label">AI Setup</span>
+          </button>
+
+          <div class="sync-indicator" id="sync-indicator">
+            <span class="sync-dot"></span>
+            <span id="sync-label">Connecting...</span>
+          </div>
+
+          <a
+            href="/api/export.md"
+            class="btn-ghost"
+            title="Export War Room Summary as Markdown"
+            download
+          >
+            📥 Export
+          </a>
+
+          <button class="btn-ghost" id="btn-share-link" title="Copy team share URL">
+            🔗 Share
+          </button>
+
+          <div class="identity-box">
+            <label for="member-select" class="sr-only">Posting as</label>
+            <select id="member-select" class="member-select"></select>
+            <button class="btn-icon" id="btn-edit-profile" title="Edit profile & status">
+              ⚙️
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar">
+          <div class="sidebar-section">
+            <div class="sidebar-heading">CHANNELS</div>
+            <div id="channel-list" class="channel-list"></div>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-heading">//CODEBREAKER SQUAD</div>
+            <div id="team-roster" class="team-roster"></div>
+          </div>
+
+          <div class="sidebar-footer">
+            <div class="tip-title">🤖 Built-in AI Powerups</div>
+            <p class="tip-body">
+              • Type <code>@ai</code> in chat to summon your AI teammate<br />
+              • Paste screenshots (<code>Ctrl+V</code>) directly in chat<br />
+              • Drop PDFs/photos/CSVs in <strong>📎 AI File Scanner</strong>
+            </p>
+          </div>
+        </aside>
+
+        <main class="main-panel">
+          <!-- VIEW 1: LIVE CHAT & MESSAGE BOARD -->
+          <section id="view-chat" class="view-section active">
+            <div class="channel-header">
+              <div>
+                <h2 id="active-channel-title">#general</h2>
+                <p id="active-channel-desc">//CodeBreaker war room, quick syncs &amp; @ai copilot</p>
+              </div>
+              <div class="header-actions">
+                <input
+                  type="text"
+                  id="chat-search-input"
+                  class="search-input"
+                  placeholder="🔍 Filter messages..."
+                />
+                <button type="button" class="btn-accent" id="btn-ai-summarize">
+                  ✨ AI Summarize
+                </button>
+              </div>
+            </div>
+
+            <div id="pinned-banner" class="pinned-banner hidden"></div>
+            <div id="messages-container" class="messages-container"></div>
+
+            <form id="chat-form" class="chat-composer">
+              <div class="composer-toolbar">
+                <div class="tag-group">
+                  <span class="composer-label">Tag:</span>
+                  <label class="tag-radio">
+                    <input type="radio" name="msgTag" value="chat" checked />
+                    <span>💬 Chat</span>
+                  </label>
+                  <label class="tag-radio">
+                    <input type="radio" name="msgTag" value="announcement" />
+                    <span>📣 Announce</span>
+                  </label>
+                  <label class="tag-radio">
+                    <input type="radio" name="msgTag" value="blocker" />
+                    <span>🚨 Blocker</span>
+                  </label>
+                  <label class="tag-radio">
+                    <input type="radio" name="msgTag" value="snippet" />
+                    <span>💻 Code/Link</span>
+                  </label>
+                </div>
+
+                <div class="composer-quick-btns">
+                  <button type="button" class="mini-pill-btn" id="btn-insert-ai">
+                    🤖 Ask @ai
+                  </button>
+                  <label class="mini-pill-btn">
+                    📎 Attach &amp; Scan
+                    <input type="file" id="chat-file-input" class="hidden" />
+                  </label>
+                </div>
+              </div>
+
+              <div id="chat-upload-status" class="upload-inline-banner hidden"></div>
+
+              <div class="composer-input-row">
+                <textarea
+                  id="chat-input"
+                  rows="2"
+                  placeholder="Message #general, type @ai for AI help, or Ctrl+V paste a screenshot..."
+                ></textarea>
+                <button type="submit" class="btn-primary">Send ➤</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- VIEW 2: ATTACHMENT VAULT & AI SCANNER -->
+          <section id="view-files" class="view-section">
+            <div class="section-header">
+              <div>
+                <h2>📎 Attachment Vault &amp; Multimodal AI Idea Scanner</h2>
+                <p>
+                  Upload hackathon briefs, PDFs, whiteboard photos, site images, CSVs, or code — AI scans &amp; generates Gamuda ideas automatically!
+                </p>
+              </div>
+            </div>
+
+            <div class="scanner-workspace">
+              <div class="dropzone-card" id="file-dropzone">
+                <div class="dropzone-main">
+                  <div class="dropzone-icon">📂</div>
+                  <div>
+                    <div class="dropzone-title">
+                      Drag &amp; drop any attachment here, or click to browse
+                    </div>
+                    <div class="dropzone-sub">
+                      Supports PDF, PNG/JPG/WebP screenshots &amp; site photos, CSV/XLSX, Word/PPTX, TXT/MD/JSON, Audio (up to 25 MB)
+                    </div>
+                  </div>
+                  <label class="btn-primary">
+                    Choose File
+                    <input type="file" id="vault-file-input" class="hidden" />
+                  </label>
+                </div>
+                <div class="dropzone-prompt-row">
+                  <input
+                    type="text"
+                    id="vault-prompt-input"
+                    placeholder="Optional AI focus instruction (e.g., 'Find construction safety & cost-saving hackathon ideas from this doc')..."
+                  />
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="vault-share-chat" checked />
+                    <span>Notify squad in #idea-lab</span>
+                  </label>
+                </div>
+                <div id="vault-uploading-bar" class="vault-uploading hidden">
+                  ⏳ Uploading &amp; running AI multimodal analysis...
+                </div>
+              </div>
+
+              <div id="files-list" class="files-list"></div>
+            </div>
+          </section>
+
+          <!-- VIEW 3: IDEA PITCH & VOTING BOARD -->
+          <section id="view-ideas" class="view-section">
+            <div class="section-header">
+              <div>
+                <h2>💡 Hackathon Idea Pitch &amp; Voting Lab</h2>
+                <p>
+                  Vote on squad concepts, refine pitches with AI, and generate timed 3-minute stage scripts + judge scores.
+                </p>
+              </div>
+              <button class="btn-primary" id="btn-open-idea-modal">
+                + Pitch New Idea
+              </button>
+            </div>
+
+            <div id="ideas-grid" class="ideas-grid"></div>
+          </section>
+
+          <!-- VIEW 4: 3-PERSON SPRINT KANBAN BOARD -->
+          <section id="view-tasks" class="view-section">
+            <div class="section-header">
+              <div>
+                <h2>📋 //CodeBreaker 3-Person Sprint Board</h2>
+                <p>
+                  Coordinate tasks across <code>frontend/</code>, <code>backend/</code>, <code>ai-engine/</code>, and <code>shared/</code>.
+                </p>
+              </div>
+              <div class="filter-row">
+                <select id="task-filter-owner" class="input-select">
+                  <option value="all">All 3 Teammates</option>
+                </select>
+              </div>
+            </div>
+
+            <form id="task-form" class="quick-task-bar">
+              <input
+                type="text"
+                id="task-title-input"
+                placeholder="Add a task for CodeKeeper, J_SON, or CodeZero..."
+                required
+              />
+              <select id="task-owner-input" class="input-select"></select>
+              <select id="task-module-input" class="input-select">
+                <option value="shared">shared/</option>
+                <option value="frontend">frontend/</option>
+                <option value="backend">backend/</option>
+                <option value="ai-engine">ai-engine/</option>
+              </select>
+              <button type="submit" class="btn-primary">+ Add Task</button>
+            </form>
+
+            <div class="kanban-board">
+              <div class="kanban-col">
+                <div class="kanban-col-header">
+                  <span>📝 To Do</span>
+                  <span class="col-count" id="count-todo">0</span>
+                </div>
+                <div class="kanban-cards" id="col-todo"></div>
+              </div>
+              <div class="kanban-col">
+                <div class="kanban-col-header">
+                  <span>⚡ In Progress</span>
+                  <span class="col-count" id="count-doing">0</span>
+                </div>
+                <div class="kanban-cards" id="col-doing"></div>
+              </div>
+              <div class="kanban-col">
+                <div class="kanban-col-header">
+                  <span>✅ Done</span>
+                  <span class="col-count" id="count-done">0</span>
+                </div>
+                <div class="kanban-cards" id="col-done"></div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- MODAL 1: Pitch New Idea + AI Brainstorm -->
+    <div class="modal-backdrop hidden" id="idea-modal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>💡 Pitch a Gamuda Hackathon Idea</h3>
+          <button class="btn-icon" id="btn-close-idea-modal">✕</button>
+        </div>
+
+        <div class="ai-helper-box">
+          <div class="ai-helper-title">✨ AI Pitch Sharpener (Gemini 3.8 Flash)</div>
+          <div class="ai-helper-row">
+            <input
+              type="text"
+              id="ai-topic-input"
+              placeholder="Rough topic (e.g., TBM maintenance, BIM safety check, site claims)..."
+            />
+            <button type="button" class="btn-accent" id="btn-ai-sharpen">
+              ✨ Auto-Draft Pitch
+            </button>
+          </div>
+          <div id="ai-status-msg" class="ai-status-msg hidden"></div>
+        </div>
+
+        <form id="idea-form" class="modal-form">
+          <label>
+            <span>Idea Title *</span>
+            <input type="text" id="idea-title" required />
+          </label>
+          <label>
+            <span>Problem Statement (Pain Point)</span>
+            <textarea id="idea-problem" rows="2"></textarea>
+          </label>
+          <label>
+            <span>48-Hour MVP Solution</span>
+            <textarea id="idea-solution" rows="2"></textarea>
+          </label>
+          <label>
+            <span>Gamuda Business Impact / ROI</span>
+            <input type="text" id="idea-impact" />
+          </label>
+          <label>
+            <span>Tags (comma-separated)</span>
+            <input type="text" id="idea-tags" />
+          </label>
+          <label class="checkbox-row hidden" id="ai-tasks-checkbox-wrap">
+            <input type="checkbox" id="ai-add-tasks-check" checked />
+            <span>Also add the 3 AI-suggested role tasks to our Sprint Board</span>
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="btn-ghost" id="btn-cancel-idea">Cancel</button>
+            <button type="submit" class="btn-primary">Post Idea to Board</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL 2: 3-Minute Stage Pitch & Judge Critique -->
+    <div class="modal-backdrop hidden" id="pitch-modal">
+      <div class="modal-card modal-lg">
+        <div class="modal-header">
+          <h3 id="pitch-modal-title">🎤 3-Minute Stage Pitch &amp; Judge Rubric</h3>
+          <button class="btn-icon" id="btn-close-pitch-modal">✕</button>
+        </div>
+        <div id="pitch-modal-body" class="pitch-modal-body"></div>
+      </div>
+    </div>
+
+    <!-- MODAL 3: Gemini API Key Local Setup -->
+    <div class="modal-backdrop hidden" id="ai-key-modal">
+      <div class="modal-card modal-sm">
+        <div class="modal-header">
+          <h3>🔑 Configure Gemini 3.8 Flash</h3>
+          <button class="btn-icon" id="btn-close-ai-key-modal">✕</button>
+        </div>
+        <p class="modal-subtext">
+          Saves <code>GEMINI_API_KEY</code> locally to your gitignored <code>.env</code> file on the host machine to unlock live <strong>Gemini 3.8 Flash</strong> multimodal PDF, image, and pitch intelligence.
+          <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" style="color:#60a5fa;">Get an API key ↗</a>
+        </p>
+        <form id="ai-key-form" class="modal-form">
+          <label>
+            <span>Gemini API Key</span>
+            <input type="password" id="ai-key-input" placeholder="AIza..." autocomplete="off" required />
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="btn-ghost" id="btn-cancel-ai-key">Cancel</button>
+            <button type="submit" class="btn-accent">Save &amp; Activate Live AI</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL 4: Synced 48h Hackathon Timer -->
+    <div class="modal-backdrop hidden" id="timer-modal">
+      <div class="modal-card modal-sm">
+        <div class="modal-header">
+          <h3>⏱️ Synced 48-Hour Hackathon Clock</h3>
+          <button class="btn-icon" id="btn-close-timer-modal">✕</button>
+        </div>
+        <p class="modal-subtext">
+          Syncs the competition countdown across CodeKeeper, J_SON, and CodeZero's browsers.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+          <button type="button" class="btn-primary" id="btn-start-48h">
+            🚀 Start 48-Hour Hackathon Countdown Now
+          </button>
+          <button type="button" class="btn-ghost" id="btn-start-4h-freeze">
+            ❄️ Test T-Minus 4h Feature Freeze Mode
+          </button>
+          <button type="button" class="btn-ghost" id="btn-reset-timer">
+            🔄 Reset to Pre-Hackathon Warmup
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 5: Edit Teammate Profile -->
+    <div class="modal-backdrop hidden" id="profile-modal">
+      <div class="modal-card modal-sm">
+        <div class="modal-header">
+          <h3>⚙️ Edit Teammate Profile</h3>
+          <button class="btn-icon" id="btn-close-profile-modal">✕</button>
+        </div>
+        <form id="profile-form" class="modal-form">
+          <label>
+            <span>Display Name &amp; Callsign</span>
+            <input type="text" id="profile-name" required />
+          </label>
+          <label>
+            <span>Email / GitLab Handle</span>
+            <input type="text" id="profile-handle" />
+          </label>
+          <label>
+            <span>Hackathon Role</span>
+            <input type="text" id="profile-role" />
+          </label>
+          <label>
+            <span>Current Status</span>
+            <input type="text" id="profile-status" />
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="btn-ghost" id="btn-cancel-profile">Cancel</button>
+            <button type="submit" class="btn-primary">Save Profile</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "germany-conquer-portal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Gamuda Berhad 3-Person Hackathon War Room — Live Chat, Idea Voting & Sprint Board",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env backend/server.mjs",
+    "dev": "node --watch --env-file-if-exists=.env backend/server.mjs",
+    "test": "node backend/smoke_test.mjs"
+  },
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "dependencies": {
+    "@google/genai": "^3.1.0"
+  }
+}

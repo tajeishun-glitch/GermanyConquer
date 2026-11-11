@@ -1,0 +1,172 @@
+{
+  "teamName": "//CodeBreaker",
+  "timer": {
+    "mode": "warmup",
+    "label": "Pre-Hackathon Warmup",
+    "endsAt": null
+  },
+  "members": [
+    {
+      "id": "m1",
+      "nickname": "CodeKeeper",
+      "fullName": "Wesley Phoon",
+      "name": "CodeKeeper (Wesley)",
+      "handle": "tkphoon@gamuda.com.my",
+      "initials": "CK",
+      "color": "#3b82f6",
+      "role": "Platform & Integration",
+      "status": "Ready to Hack"
+    },
+    {
+      "id": "m2",
+      "nickname": "J_SON",
+      "fullName": "Ta Jei Shun",
+      "name": "J_SON (Jei Shun)",
+      "handle": "tajeishun@gamuda.com.my",
+      "initials": "JS",
+      "color": "#10b981",
+      "role": "Repo Lead & Builder",
+      "status": "Setting Permissions"
+    },
+    {
+      "id": "m3",
+      "nickname": "CodeZero",
+      "fullName": "Chong Shaw Zhe",
+      "name": "CodeZero (Shaw Zhe)",
+      "handle": "chongshawzhe@gamuda.com.my",
+      "initials": "CZ",
+      "color": "#f59e0b",
+      "role": "UX & AI Specialist",
+      "status": "Ready to Hack"
+    }
+  ],
+  "channels": [
+    {
+      "id": "general",
+      "name": "general",
+      "description": "//CodeBreaker war room, quick syncs & @ai copilot"
+    },
+    {
+      "id": "idea-lab",
+      "name": "idea-lab",
+      "description": "Brainstorming Gamuda hackathon problem statements & pitches"
+    },
+    {
+      "id": "tech-git",
+      "name": "tech-git",
+      "description": "GitHub access tests, API contracts, snippets & deployment links"
+    },
+    {
+      "id": "standup",
+      "name": "standup",
+      "description": "2-hour sprint check-ins: Done / Doing / Blocked"
+    }
+  ],
+  "files": [],
+  "messages": [
+    {
+      "id": "msg-1",
+      "channelId": "general",
+      "authorId": "m1",
+      "text": "Welcome to the //CodeBreaker War Room! Squad locked in: CodeKeeper (Wesley), J_SON (Jei Shun), and CodeZero (Shaw Zhe). Try typing '@ai' in chat, pasting a screenshot (Ctrl+V), or uploading any PDF/image/CSV in the '📎 AI File Scanner' tab!",
+      "tag": "announcement",
+      "pinned": true,
+      "reactions": {
+        "🚀": ["m1", "m2", "m3"],
+        "🔥": ["m1"]
+      },
+      "createdAt": "2026-11-11T04:30:00.000Z"
+    },
+    {
+      "id": "msg-2",
+      "channelId": "tech-git",
+      "authorId": "m1",
+      "text": "Moved our //CodeBreaker repo to GitHub (https://github.com/tajeishun-glitch/GermanyConquer)! Make sure CodeKeeper & CodeZero accept collaborator invites under Settings -> Collaborators so all 3 of us can push & merge!",
+      "tag": "blocker",
+      "pinned": true,
+      "reactions": {
+        "👍": ["m1"]
+      },
+      "createdAt": "2026-11-11T04:35:00.000Z"
+    },
+    {
+      "id": "msg-3",
+      "channelId": "idea-lab",
+      "authorId": "m1",
+      "text": "New AI upgrades are live: upload any competition brief, site photo, or CSV in '📎 AI File Scanner' to generate 3 Gamuda ideas automatically, or click '🎤 3-Min Pitch & Judge Score' on any Idea Card!",
+      "tag": "chat",
+      "pinned": false,
+      "reactions": {
+        "💡": ["m1"]
+      },
+      "createdAt": "2026-11-11T05:05:00.000Z"
+    }
+  ],
+  "ideas": [
+    {
+      "id": "idea-1",
+      "authorId": "m1",
+      "title": "SiteSense AI — Multimodal Construction Safety & Progress Copilot",
+      "problem": "Site engineers spend hours manually reviewing daily site photos, WhatsApp updates, and safety checklists across packages, delaying hazard detection.",
+      "solution": "Upload site photos or voice notes to Gemini 3.8 Flash multimodal AI to auto-flag PPE/housekeeping hazards, map them to zone IDs, and draft daily site inspection reports in 10 seconds.",
+      "gamudaImpact": "Saves ~1.5 hrs/day per site engineer and surfaces high-risk safety issues before shift handover.",
+      "tags": ["Gemini 3.8 Multimodal", "Site Safety", "Cloud Run"],
+      "votes": ["m1"],
+      "comments": [
+        {
+          "id": "c-1",
+          "authorId": "m1",
+          "text": "Click '🎤 3-Min Pitch & Judge Score' on this card to see our auto-generated stage script!",
+          "createdAt": "2026-11-11T05:06:00.000Z"
+        }
+      ],
+      "createdAt": "2026-11-11T05:00:00.000Z"
+    },
+    {
+      "id": "idea-2",
+      "authorId": "m2",
+      "title": "TenderGuard — Instant Contract & BOQ Risk Radar",
+      "problem": "Reviewing 500-page tender specs and Bills of Quantities (BOQ) under tight deadlines risks missing non-standard penalty clauses or material spec mismatches.",
+      "solution": "Split-screen AI reviewer that compares new tender PDFs against Gamuda historical benchmarks, highlighting high-risk clauses, cost drivers, and ambiguity questions.",
+      "gamudaImpact": "Cuts first-pass tender review from 3 days to 30 minutes with traceable page citations.",
+      "tags": ["Document AI", "Commercial & Tender", "PDF Intelligence"],
+      "votes": ["m2"],
+      "comments": [],
+      "createdAt": "2026-11-11T05:02:00.000Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "title": "Add CodeKeeper & CodeZero as Collaborators on GitHub (GermanyConquer)",
+      "ownerId": "m2",
+      "module": "shared",
+      "status": "todo",
+      "createdAt": "2026-11-11T04:40:00.000Z"
+    },
+    {
+      "id": "task-2",
+      "title": "Upgrade //CodeBreaker Portal with Multimodal AI File Scanner & Pitch Coach",
+      "ownerId": "m1",
+      "module": "ai-engine",
+      "status": "done",
+      "createdAt": "2026-11-11T05:10:00.000Z"
+    },
+    {
+      "id": "task-3",
+      "title": "Upload hackathon brief / sample docs into AI File Scanner to brainstorm ideas",
+      "ownerId": "m3",
+      "module": "frontend",
+      "status": "doing",
+      "createdAt": "2026-11-11T05:11:00.000Z"
+    },
+    {
+      "id": "task-4",
+      "title": "Verify all 3 teammates can git clone, branch, push & run npm start",
+      "ownerId": "m1",
+      "module": "backend",
+      "status": "todo",
+      "createdAt": "2026-11-11T05:12:00.000Z"
+    }
+  ]
+}

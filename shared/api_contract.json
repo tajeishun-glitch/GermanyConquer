@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "project": "//CodeBreaker — Gamuda Hackathon AI War Room Portal",
+  "aiModel": "gemini-3.8-flash",
+  "endpoints": {
+    "health": { "method": "GET", "path": "/api/health" },
+    "events": { "method": "GET", "path": "/api/events?memberId=<id>" },
+    "state": { "method": "GET", "path": "/api/state" },
+    "exportMarkdown": { "method": "GET", "path": "/api/export.md" },
+    "setAiKey": { "method": "POST", "path": "/api/settings/ai-key" },
+    "setTimer": { "method": "POST", "path": "/api/timer" },
+    "uploadFile": {
+      "method": "POST",
+      "path": "/api/files",
+      "description": "Uploads any attachment (PDF, image, CSV, Office doc, audio, code) up to 25MB and optionally runs Gemini 3.8 Flash multimodal scan"
+    },
+    "rawFile": { "method": "GET", "path": "/api/files/:id/raw" },
+    "analyzeFile": {
+      "method": "POST",
+      "path": "/api/files/:id/analyze",
+      "description": "Scans attachment with Gemini 3.8 Flash and returns summary, keyFindings, 3 generatedIdeas, and 3-person squadPlan"
+    },
+    "deleteFile": { "method": "DELETE", "path": "/api/files/:id" },
+    "postMessage": { "method": "POST", "path": "/api/messages" },
+    "aiChatCopilot": { "method": "POST", "path": "/api/ai/chat" },
+    "aiBrainstorm": { "method": "POST", "path": "/api/ai/brainstorm" },
+    "generatePitch": { "method": "POST", "path": "/api/ideas/:id/pitch" }
+  }
+}
