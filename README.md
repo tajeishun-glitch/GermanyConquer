@@ -11,7 +11,7 @@ Pre-competition **AI Team War Room Portal** + **Zero-Conflict Hackathon Reposito
 | # | Name | Callsign | Email | Module Ownership | Git Push Verified |
 | :- | :--- | :--- | :--- | :--- | :--- |
 | 1 | **Wesley Phoon** | **`CodeKeeper`** | `tkphoon@gamuda.com.my` | TBD (`frontend` / `backend` / `ai-engine`) | `[x]` Verified |
-| 2 | **Ta Jei Shun** | **`J_SON`** | `tajeishun@gamuda.com.my` | TBD (`frontend` / `backend` / `ai-engine`) | `[ ]` Pending |
+| 2 | **Ta Jei Shun** | **`CodeJSON`** | `tajeishun@gamuda.com.my` | TBD (`frontend` / `backend` / `ai-engine`) | `[ ]` Pending |
 | 3 | **Chong Shaw Zhe** | **`CodeZero`** | `chongshawzhe@gamuda.com.my` | TBD (`frontend` / `backend` / `ai-engine`) | `[ ]` Pending |
 
 > **GitHub Collaborator Access**: In `https://github.com/tajeishun-glitch/GermanyConquer/settings/access`, click **Add people** to invite Wesley (`CodeKeeper`) and Shaw Zhe (`CodeZero`) as Collaborators so all 3 teammates can push branches and merge PRs.

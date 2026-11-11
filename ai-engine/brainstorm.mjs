@@ -168,7 +168,7 @@ export async function sharpenHackathonIdea({ topic = "", roughNotes = "" }) {
       const interaction = await client.interactions.create({
         model: getActiveModel(),
         system_instruction:
-          "You are the elite AI hackathon coach for Team //CodeBreaker (Wesley 'CodeKeeper', Ta Jei Shun 'J_SON', Chong Shaw Zhe 'CodeZero') competing in Gamuda Berhad's 48-hour hackathon. Craft crisp, practical, high-ROI engineering, construction, infrastructure, property, or smart-operations pitches.",
+          "You are the elite AI hackathon coach for Team //CodeBreaker (Wesley 'CodeKeeper', Ta Jei Shun 'CodeJSON', Chong Shaw Zhe 'CodeZero') competing in Gamuda Berhad's 48-hour hackathon. Craft crisp, practical, high-ROI engineering, construction, infrastructure, property, or smart-operations pitches.",
         input: `Turn this rough concept into a winning 48-hour hackathon pitch for Gamuda Berhad.
 Topic: ${cleanTopic}
 Rough Notes: ${cleanNotes || "None provided"}`,
@@ -229,7 +229,7 @@ Rough Notes: ${cleanNotes || "None provided"}`,
     tags: ["Gemini 3.8", "Gamuda Ops", "48h MVP"],
     suggestedTasks: [
       `[CodeKeeper] Build interactive split-screen demo UI & ROI KPI cards for "${cleanTopic}"`,
-      `[J_SON] Build backend API endpoint + seed 3 realistic Gamuda sample scenarios`,
+      `[CodeJSON] Build backend API endpoint + seed 3 realistic Gamuda sample scenarios`,
       `[CodeZero] Build Gemini 3.8 structured output prompt & attachment scanner for "${cleanTopic}"`,
     ],
   };
@@ -290,13 +290,13 @@ export async function analyzeUploadedAttachment({
 
       inputBlocks.push({
         type: "text",
-        text: `Analyze this uploaded attachment ("${fileMeta.originalName}", ${localInfo.summaryHint}) for Team //CodeBreaker (CodeKeeper, J_SON, CodeZero) preparing for Gamuda Berhad's 2-day Hackathon.${focusNote}
+        text: `Analyze this uploaded attachment ("${fileMeta.originalName}", ${localInfo.summaryHint}) for Team //CodeBreaker (CodeKeeper, CodeJSON, CodeZero) preparing for Gamuda Berhad's 2-day Hackathon.${focusNote}
 
 Provide:
 1. "summary": Clear 2-3 sentence summary of what this file contains or shows.
 2. "keyFindings": 3 to 5 specific insights, pain points, requirements, metrics, or opportunities spotted in the file.
 3. "generatedIdeas": 3 distinct, high-impact 48-hour hackathon project ideas inspired by this file for Gamuda Berhad (each with title, problem, solution, gamudaImpact, tags).
-4. "squadPlan": 3 concrete action items tailored for CodeKeeper (Platform/Integration), J_SON (Backend/Data), and CodeZero (UX/AI).`,
+4. "squadPlan": 3 concrete action items tailored for CodeKeeper (Platform/Integration), CodeJSON (Backend/Data), and CodeZero (UX/AI).`,
       });
 
       const interaction = await client.interactions.create({
@@ -423,7 +423,7 @@ Provide:
     ],
     squadPlan: [
       `[CodeKeeper] Wire "${fileMeta.originalName}" as a 1-click demo sample scenario with clear Before/After KPI cards`,
-      `[J_SON] Expose structured JSON parsing & validation pipeline for ${mime} uploads`,
+      `[CodeJSON] Expose structured JSON parsing & validation pipeline for ${mime} uploads`,
       `[CodeZero] Tune Gemini 3.8 Flash multimodal schema & confidence scoring on "${fileMeta.originalName}"`,
     ],
   };
@@ -461,7 +461,7 @@ export async function askTeamAiCopilot({
       const interaction = await client.interactions.create({
         model: getActiveModel(),
         system_instruction:
-          "You are //CodeBreaker AI, the embedded 4th teammate for Wesley (CodeKeeper), Ta Jei Shun (J_SON), and Chong Shaw Zhe (CodeZero) in Gamuda Berhad's 48-hour Hackathon. Keep answers concise, punchy, practical, and formatted cleanly with bullet points.",
+          "You are //CodeBreaker AI, the embedded 4th teammate for Wesley (CodeKeeper), Ta Jei Shun (CodeJSON), and Chong Shaw Zhe (CodeZero) in Gamuda Berhad's 48-hour Hackathon. Keep answers concise, punchy, practical, and formatted cleanly with bullet points.",
         input: `Channel: #${channelName}
 Recent Team Messages:
 ${chatTranscript || "(No messages yet)"}
@@ -514,7 +514,7 @@ Teammate Request: ${question || "Summarize our current discussion, highlight blo
     );
   }
   lines.push(
-    `- **Recommended Next Move**: Lock your top-voted idea in Idea Lab, upload any hackathon brief/sample dataset in **ðŸ“Ž AI File Scanner**, and assign 1 task each to \`CodeKeeper\`, \`J_SON\`, and \`CodeZero\`.`
+    `- **Recommended Next Move**: Lock your top-voted idea in Idea Lab, upload any hackathon brief/sample dataset in **ðŸ“Ž AI File Scanner**, and assign 1 task each to \`CodeKeeper\`, \`CodeJSON\`, and \`CodeZero\`.`
   );
   lines.push(
     `*(Tip: Click **ðŸ”‘ AI Key** in the top bar to connect \`GEMINI_API_KEY\` for live Gemini 3.8 Flash deep reasoning!)*`
@@ -537,7 +537,7 @@ export async function generatePitchAndCritique({ idea }) {
       const interaction = await client.interactions.create({
         model: getActiveModel(),
         system_instruction:
-          "You are a Gamuda Berhad Executive Hackathon Judge and Pitch Coach for Team //CodeBreaker (CodeKeeper = Wesley Phoon, J_SON = Ta Jei Shun, CodeZero = Chong Shaw Zhe).",
+          "You are a Gamuda Berhad Executive Hackathon Judge and Pitch Coach for Team //CodeBreaker (CodeKeeper = Wesley Phoon, CodeJSON = Ta Jei Shun, CodeZero = Chong Shaw Zhe).",
         input: `Evaluate this hackathon idea and write a timed 3-minute winning stage pitch split across all 3 teammates:
 Title: ${idea.title}
 Problem: ${idea.problem}
@@ -639,7 +639,7 @@ Tags: ${(idea.tags || []).join(", ")}`,
         }" Show the 'Before' pain in 15 seconds, then introduce Team //CodeBreaker's solution: ${idea.title}.`,
       },
       {
-        speaker: "J_SON (Jei Shun)",
+        speaker: "CodeJSON (Jei Shun)",
         timeWindow: "0:50 â€“ 2:00 Â· Live End-to-End Demo",
         talkingPoints: `Run the live product (no slides!). Upload a realistic input and walk judges through: "${
           idea.solution || "Instant structured analysis and action workflow."

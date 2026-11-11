@@ -704,7 +704,7 @@ document.getElementById("btn-ai-summarize").addEventListener("click", async () =
     body: JSON.stringify({
       channelId: activeChannelId,
       question:
-        "Summarize our recent messages in this channel, highlight any blockers, and list 3 clear next actions for CodeKeeper, J_SON, and CodeZero.",
+        "Summarize our recent messages in this channel, highlight any blockers, and list 3 clear next actions for CodeKeeper, CodeJSON, and CodeZero.",
     }),
   });
 });
@@ -995,7 +995,7 @@ function renderPitchModal(idea, deck) {
     </div>
     <div class="impact-box">⚖️ <strong>Judge Verdict:</strong> ${escapeHtml(deck.verdict || "")}</div>
     ${blindHtml ? `<div><strong style="font-size:0.82rem;">⚠️ Blind Spots to Watch:</strong><ul class="findings-list" style="margin-top:5px;">${blindHtml}</ul></div>` : ""}
-    <h4 style="font-size:0.9rem;">⏱️ 3-Person Timed Stage Script (CodeKeeper · J_SON · CodeZero)</h4>
+    <h4 style="font-size:0.9rem;">⏱️ 3-Person Timed Stage Script (CodeKeeper · CodeJSON · CodeZero)</h4>
     <div style="display:flex;flex-direction:column;gap:8px;">${scriptHtml}</div>
     <h4 style="font-size:0.9rem;">🛡️ Tough Judge Q&amp;A Prep</h4>
     <div style="display:flex;flex-direction:column;gap:8px;">${qaHtml}</div>

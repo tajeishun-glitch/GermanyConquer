@@ -1,10 +1,10 @@
 # //CodeBreaker — Shared Antigravity Agent Rules
 
-This repository (`GermanyConquer`) is used by **Team `//CodeBreaker`** — a 3-person Gamuda Berhad Hackathon squad (`CodeKeeper`, `J_SON`, `CodeZero`) — over a 48-hour sprint. Follow these workspace rules at all times so code generated across all three teammates' machines integrates cleanly without merge conflicts.
+This repository (`GermanyConquer`) is used by **Team `//CodeBreaker`** — a 3-person Gamuda Berhad Hackathon squad (`CodeKeeper`, `CodeJSON`, `CodeZero`) — over a 48-hour sprint. Follow these workspace rules at all times so code generated across all three teammates' machines integrates cleanly without merge conflicts.
 
 ## Squad Roster
 - **Wesley Phoon (`CodeKeeper`)** — `tkphoon@gamuda.com.my`
-- **Ta Jei Shun (`J_SON`)** — `tajeishun@gamuda.com.my`
+- **Ta Jei Shun (`CodeJSON`)** — `tajeishun@gamuda.com.my`
 - **Chong Shaw Zhe (`CodeZero`)** — `chongshawzhe@gamuda.com.my`
 
 ## 1. Strict Directory Ownership (Anti-Conflict Boundary)

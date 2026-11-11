@@ -19,9 +19,9 @@
     },
     {
       "id": "m2",
-      "nickname": "J_SON",
+      "nickname": "CodeJSON",
       "fullName": "Ta Jei Shun",
-      "name": "J_SON (Jei Shun)",
+      "name": "CodeJSON (Jei Shun)",
       "handle": "tajeishun@gamuda.com.my",
       "initials": "JS",
       "color": "#10b981",
@@ -68,7 +68,7 @@
       "id": "msg-1",
       "channelId": "general",
       "authorId": "m1",
-      "text": "Welcome to the //CodeBreaker War Room! Squad locked in: CodeKeeper (Wesley), J_SON (Jei Shun), and CodeZero (Shaw Zhe). Try typing '@ai' in chat, pasting a screenshot (Ctrl+V), or uploading any PDF/image/CSV in the '📎 AI File Scanner' tab!",
+      "text": "Welcome to the //CodeBreaker War Room! Squad locked in: CodeKeeper (Wesley), CodeJSON (Jei Shun), and CodeZero (Shaw Zhe). Try typing '@ai' in chat, pasting a screenshot (Ctrl+V), or uploading any PDF/image/CSV in the '📎 AI File Scanner' tab!",
       "tag": "announcement",
       "pinned": true,
       "reactions": {
