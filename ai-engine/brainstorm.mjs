@@ -222,7 +222,7 @@ Rough Notes: ${cleanNotes || "None provided"}`,
   return {
     mode: "smart-fallback",
     model: "local-coach",
-    title: `${cleanTopic} â€” Gamuda Operations Copilot`,
+    title: `${cleanTopic} — Gamuda Operations Copilot`,
     problem: `Project teams face fragmented site data and manual review bottlenecks around ${cleanTopic.toLowerCase()}${summaryContext}, slowing down critical daily engineering decisions.`,
     solution: `An interactive multimodal dashboard built by //CodeBreaker where teams upload field inputs or documents and instantly receive structured risk flags, visual KPIs, and recommended actions.`,
     gamudaImpact: `Cuts manual review turnaround by ~70% while improving auditability and safety/commercial accuracy across Gamuda packages.`,
@@ -379,7 +379,7 @@ Provide:
     }
   } else {
     findings.push(
-      `Ready for deep visual/PDF multimodal scanning â€” add GEMINI_API_KEY via the topbar ðŸ”‘ AI Key button to unlock full Gemini 3.8 Flash vision & document understanding.`
+      `Ready for deep visual/PDF multimodal scanning — add GEMINI_API_KEY via the topbar 🔑 AI Key button to unlock full Gemini 3.8 Flash vision & document understanding.`
     );
   }
   if (userPrompt.trim()) {
@@ -393,7 +393,7 @@ Provide:
     summary: `Scanned "${fileMeta.originalName}" (${localInfo.summaryHint}). ${
       localInfo.isTextLike
         ? `Parsed ${localInfo.lineCount} lines of text/structured data to synthesize hackathon opportunities.`
-        : `Captured attachment metadata and structural signals. Connect your Gemini API key (ðŸ”‘ button) anytime to re-scan with live Gemini 3.8 Flash multimodal vision.`
+        : `Captured attachment metadata and structural signals. Connect your Gemini API key (🔑 button) anytime to re-scan with live Gemini 3.8 Flash multimodal vision.`
     }`,
     keyFindings: findings,
     generatedIdeas: [
@@ -493,14 +493,14 @@ Teammate Request: ${question || "Summarize our current discussion, highlight blo
   const doingCount = tasks.filter((t) => t.status === "doing").length;
 
   const lines = [
-    `ðŸ¤– **//CodeBreaker AI Sync (#${channelName})**`,
+    `🤖 **//CodeBreaker AI Sync (#${channelName})**`,
     question
       ? `> Prompt: *"${question.slice(0, 120)}"*`
       : `> Channel Snapshot & Next Actions`,
     `- **Leading Idea**: ${
       topIdea
         ? `"${topIdea.title}" (${topIdea.votes?.length || 0}/3 squad votes)`
-        : "No ideas voted yet â€” head to Idea Lab!"
+        : "No ideas voted yet — head to Idea Lab!"
     }`,
     `- **Sprint Pulse**: ${doingCount} in progress, ${todoCount} queued in To Do.`,
   ];
@@ -514,10 +514,10 @@ Teammate Request: ${question || "Summarize our current discussion, highlight blo
     );
   }
   lines.push(
-    `- **Recommended Next Move**: Lock your top-voted idea in Idea Lab, upload any hackathon brief/sample dataset in **ðŸ“Ž AI File Scanner**, and assign 1 task each to \`CodeKeeper\`, \`CodeJSON\`, and \`CodeZero\`.`
+    `- **Recommended Next Move**: Lock your top-voted idea in Idea Lab, upload any hackathon brief/sample dataset in **📎 AI File Scanner**, and assign 1 task each to \`CodeKeeper\`, \`CodeJSON\`, and \`CodeZero\`.`
   );
   lines.push(
-    `*(Tip: Click **ðŸ”‘ AI Key** in the top bar to connect \`GEMINI_API_KEY\` for live Gemini 3.8 Flash deep reasoning!)*`
+    `*(Tip: Click **🔑 AI Key** in the top bar to connect \`GEMINI_API_KEY\` for live Gemini 3.8 Flash deep reasoning!)*`
   );
 
   return {
@@ -633,21 +633,21 @@ Tags: ${(idea.tags || []).join(", ")}`,
     pitchScript: [
       {
         speaker: "CodeKeeper (Wesley)",
-        timeWindow: "0:00 â€“ 0:50 Â· The Hook & Pain Point",
+        timeWindow: "0:00 – 0:50 · The Hook & Pain Point",
         talkingPoints: `Open with a relatable Gamuda site/project scenario: "${
           idea.problem || "Manual workflows cost hours every week."
         }" Show the 'Before' pain in 15 seconds, then introduce Team //CodeBreaker's solution: ${idea.title}.`,
       },
       {
         speaker: "CodeJSON (Jei Shun)",
-        timeWindow: "0:50 â€“ 2:00 Â· Live End-to-End Demo",
+        timeWindow: "0:50 – 2:00 · Live End-to-End Demo",
         talkingPoints: `Run the live product (no slides!). Upload a realistic input and walk judges through: "${
           idea.solution || "Instant structured analysis and action workflow."
         }" Point out speed, reliability, and clean architecture.`,
       },
       {
         speaker: "CodeZero (Shaw Zhe)",
-        timeWindow: "2:00 â€“ 3:00 Â· AI Architecture, ROI & Rollout",
+        timeWindow: "2:00 – 3:00 · AI Architecture, ROI & Rollout",
         talkingPoints: `Highlight Gemini 3.8 multimodal accuracy, human-in-the-loop safety, and measurable business ROI: "${
           idea.gamudaImpact || "Significant hours saved across project packages."
         }" Close with how Gamuda can pilot this next Monday.`,
@@ -662,7 +662,7 @@ Tags: ${(idea.tags || []).join(", ")}`,
       {
         question: "Can this scale across existing Gamuda systems after the 48-hour hackathon?",
         winningAnswer:
-          "Yes â€” it is containerized for Cloud Run with a clean JSON contract (`shared/api_contract.json`), making integration with SharePoint, BIM exports, or BigQuery straightforward.",
+          "Yes — it is containerized for Cloud Run with a clean JSON contract (`shared/api_contract.json`), making integration with SharePoint, BIM exports, or BigQuery straightforward.",
       },
     ],
   };

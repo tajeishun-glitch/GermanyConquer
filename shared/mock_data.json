@@ -23,7 +23,7 @@
       "fullName": "Ta Jei Shun",
       "name": "CodeJSON (Jei Shun)",
       "handle": "tajeishun@gamuda.com.my",
-      "initials": "JS",
+      "initials": "CJ",
       "color": "#10b981",
       "role": "Repo Lead & Builder",
       "status": "Setting Permissions"
@@ -72,8 +72,14 @@
       "tag": "announcement",
       "pinned": true,
       "reactions": {
-        "🚀": ["m1", "m2", "m3"],
-        "🔥": ["m1"]
+        "🚀": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "🔥": [
+          "m1"
+        ]
       },
       "createdAt": "2026-11-11T04:30:00.000Z"
     },
@@ -85,7 +91,9 @@
       "tag": "blocker",
       "pinned": true,
       "reactions": {
-        "👍": ["m1"]
+        "👍": [
+          "m1"
+        ]
       },
       "createdAt": "2026-11-11T04:35:00.000Z"
     },
@@ -97,7 +105,9 @@
       "tag": "chat",
       "pinned": false,
       "reactions": {
-        "💡": ["m1"]
+        "💡": [
+          "m1"
+        ]
       },
       "createdAt": "2026-11-11T05:05:00.000Z"
     }
@@ -110,8 +120,14 @@
       "problem": "Site engineers spend hours manually reviewing daily site photos, WhatsApp updates, and safety checklists across packages, delaying hazard detection.",
       "solution": "Upload site photos or voice notes to Gemini 3.8 Flash multimodal AI to auto-flag PPE/housekeeping hazards, map them to zone IDs, and draft daily site inspection reports in 10 seconds.",
       "gamudaImpact": "Saves ~1.5 hrs/day per site engineer and surfaces high-risk safety issues before shift handover.",
-      "tags": ["Gemini 3.8 Multimodal", "Site Safety", "Cloud Run"],
-      "votes": ["m1"],
+      "tags": [
+        "Gemini 3.8 Multimodal",
+        "Site Safety",
+        "Cloud Run"
+      ],
+      "votes": [
+        "m1"
+      ],
       "comments": [
         {
           "id": "c-1",
@@ -129,8 +145,14 @@
       "problem": "Reviewing 500-page tender specs and Bills of Quantities (BOQ) under tight deadlines risks missing non-standard penalty clauses or material spec mismatches.",
       "solution": "Split-screen AI reviewer that compares new tender PDFs against Gamuda historical benchmarks, highlighting high-risk clauses, cost drivers, and ambiguity questions.",
       "gamudaImpact": "Cuts first-pass tender review from 3 days to 30 minutes with traceable page citations.",
-      "tags": ["Document AI", "Commercial & Tender", "PDF Intelligence"],
-      "votes": ["m2"],
+      "tags": [
+        "Document AI",
+        "Commercial & Tender",
+        "PDF Intelligence"
+      ],
+      "votes": [
+        "m2"
+      ],
       "comments": [],
       "createdAt": "2026-11-11T05:02:00.000Z"
     }

@@ -17,6 +17,8 @@ try {
   assert.equal(htmlRes.status, 200);
   const html = await htmlRes.text();
   assert.ok(html.includes("//CodeBreaker"));
+  assert.ok(html.includes("CodeJSON"));
+  assert.ok(!html.includes("J_SON"));
   assert.ok(html.includes("AI File Scanner"));
 
   // 3. Upload & AI-scan an attachment (CSV dataset) + clean up
@@ -55,10 +57,16 @@ try {
   }).then((r) => r.json());
   assert.equal(aiChat.status, "ok");
   assert.equal(aiChat.message.authorId, "ai");
+  assert.ok(!aiChat.message.text.includes("J_SON"));
+  assert.ok(aiChat.message.text.includes("CodeJSON"));
   await fetch(`${base}/api/messages/${aiChat.message.id}`, { method: "DELETE" });
 
-  // 5. 3-Minute Winning Pitch & Judge Rubric endpoint
+  // 5. 3-Minute Winning Pitch & Judge Rubric endpoint + Callsign Verification
   const state = await fetch(`${base}/api/state`).then((r) => r.json());
+  const rawStateJson = JSON.stringify(state);
+  assert.ok(rawStateJson.includes("CodeJSON (Jei Shun)"), "Expected CodeJSON (Jei Shun) in /api/state");
+  assert.ok(!rawStateJson.includes("J_SON"), "Did not expect legacy J_SON anywhere in /api/state");
+
   const firstIdeaId = state.ideas[0].id;
   const pitchRes = await fetch(`${base}/api/ideas/${firstIdeaId}/pitch`, {
     method: "POST",
@@ -72,8 +80,10 @@ try {
   assert.equal(mdRes.status, 200);
   const mdText = await mdRes.text();
   assert.ok(mdText.includes("//CodeBreaker"));
+  assert.ok(mdText.includes("CodeJSON"));
+  assert.ok(!mdText.includes("J_SON"));
 
-  console.log("✅ All //CodeBreaker AI & Attachment Scanner tests passed!");
+  console.log("✅ All //CodeBreaker AI, Callsign & Attachment Scanner tests passed!");
 } finally {
   server.close();
 }

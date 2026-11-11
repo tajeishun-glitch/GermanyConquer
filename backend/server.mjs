@@ -58,22 +58,55 @@ async function loadEnvFileIfPresent() {
   }
 }
 
+function sanitizeLegacyCallsigns(rawText) {
+  return rawText
+    .replaceAll("\u00f0\u0178\u00a4\u2013", "\u{1F916}")
+    .replaceAll("\u00f0\u0178\u201d\u2018", "\u{1F511}")
+    .replaceAll("\u00f0\u0178\u201c\u017d", "\u{1F4CE}")
+    .replaceAll("\u00e2\u20ac\u201d", "\u2014")
+    .replaceAll("\u00e2\u20ac\u201c", "\u2013")
+    .replaceAll("\u00c2\u00b7", "\u00b7")
+    .replace(/\bJ_SON\b/g, "CodeJSON")
+    .replace(/\bJeiSON\b/g, "CodeJSON");
+}
+
 async function loadState() {
   await loadEnvFileIfPresent();
   await fs.mkdir(UPLOADS_DIR, { recursive: true });
+  const seedRaw = await fs.readFile(SEED_PATH, "utf8");
+  const seedData = JSON.parse(sanitizeLegacyCallsigns(seedRaw));
+
   if (existsSync(STORE_PATH)) {
     const raw = await fs.readFile(STORE_PATH, "utf8");
-    state = JSON.parse(raw);
+    const cleaned = sanitizeLegacyCallsigns(raw);
+    state = JSON.parse(cleaned);
     state.files = state.files || [];
     state.timer = state.timer || {
       mode: "warmup",
       label: "Pre-Hackathon Warmup",
       endsAt: null,
     };
+
+    // Sync canonical squad nicknames/names from shared/mock_data.json
+    let migrated = cleaned !== raw;
+    for (const seedMember of seedData.members || []) {
+      const existing = (state.members || []).find((m) => m.id === seedMember.id);
+      if (existing) {
+        if (existing.nickname !== seedMember.nickname || existing.name !== seedMember.name || existing.initials !== seedMember.initials) {
+          existing.nickname = seedMember.nickname;
+          existing.name = seedMember.name;
+          existing.initials = seedMember.initials;
+          migrated = true;
+        }
+      }
+    }
+    if (migrated) {
+      await saveState();
+    }
     return;
   }
-  const seedRaw = await fs.readFile(SEED_PATH, "utf8");
-  state = JSON.parse(seedRaw);
+
+  state = seedData;
   state.files = state.files || [];
   await saveState();
 }
