@@ -110,6 +110,19 @@
         ]
       },
       "createdAt": "2026-11-11T05:05:00.000Z"
+    },
+    {
+      "id": "msg-6fe9a6cb",
+      "channelId": "general",
+      "authorId": "ai",
+      "text": "🤖 **//CodeBreaker AI Sync (#general)**\n> Prompt: *\"Summarize our recent messages in this channel, highlight any blockers, and list 3 clear next actions for CodeKeeper, Cod\"*\n- **Leading Idea**: \"SiteSense AI — Multimodal Construction Safety & Progress Copilot\" (1/3 squad votes)\n- **Sprint Pulse**: 1 in progress, 2 queued in To Do.\n- **Recommended Next Move**: Lock your top-voted idea in Idea Lab, upload any hackathon brief/sample dataset in **📎 AI File Scanner**, and assign 1 task each to `CodeKeeper`, `CodeJSON`, and `CodeZero`.\n*(Tip: Click **🔑 AI Key** in the top bar to connect `GEMINI_API_KEY` for live Gemini 3.8 Flash deep reasoning!)*",
+      "tag": "ai",
+      "aiMode": "smart-fallback",
+      "pinned": false,
+      "reactions": {
+        "🤖": []
+      },
+      "createdAt": "2026-11-11T11:35:48.376Z"
     }
   ],
   "ideas": [
@@ -136,7 +149,50 @@
           "createdAt": "2026-11-11T05:06:00.000Z"
         }
       ],
-      "createdAt": "2026-11-11T05:00:00.000Z"
+      "createdAt": "2026-11-11T05:00:00.000Z",
+      "pitchDeck": {
+        "mode": "smart-fallback",
+        "model": "local-judge",
+        "scores": {
+          "gamudaImpact": 23,
+          "innovation": 21,
+          "feasibility48h": 22,
+          "demoWow": 22,
+          "total": 88
+        },
+        "verdict": "Strong enterprise fit for Gamuda! To push \"SiteSense AI — Multimodal Construction Safety & Progress Copilot\" from 88/100 to 95+, open your demo with a real anonymized Gamuda document/photo and display a live ROI counter on screen.",
+        "blindSpots": [
+          "Show how false positives are handled (human-in-the-loop approval button).",
+          "Prepare 1 offline fallback sample in case stage Wi-Fi lags during the live demo."
+        ],
+        "pitchScript": [
+          {
+            "speaker": "CodeKeeper (Wesley)",
+            "timeWindow": "0:00 – 0:50 · The Hook & Pain Point",
+            "talkingPoints": "Open with a relatable Gamuda site/project scenario: \"Site engineers spend hours manually reviewing daily site photos, WhatsApp updates, and safety checklists across packages, delaying hazard detection.\" Show the 'Before' pain in 15 seconds, then introduce Team //CodeBreaker's solution: SiteSense AI — Multimodal Construction Safety & Progress Copilot."
+          },
+          {
+            "speaker": "CodeJSON (Jei Shun)",
+            "timeWindow": "0:50 – 2:00 · Live End-to-End Demo",
+            "talkingPoints": "Run the live product (no slides!). Upload a realistic input and walk judges through: \"Upload site photos or voice notes to Gemini 3.8 Flash multimodal AI to auto-flag PPE/housekeeping hazards, map them to zone IDs, and draft daily site inspection reports in 10 seconds.\" Point out speed, reliability, and clean architecture."
+          },
+          {
+            "speaker": "CodeZero (Shaw Zhe)",
+            "timeWindow": "2:00 – 3:00 · AI Architecture, ROI & Rollout",
+            "talkingPoints": "Highlight Gemini 3.8 multimodal accuracy, human-in-the-loop safety, and measurable business ROI: \"Saves ~1.5 hrs/day per site engineer and surfaces high-risk safety issues before shift handover.\" Close with how Gamuda can pilot this next Monday."
+          }
+        ],
+        "judgeQA": [
+          {
+            "question": "How do you prevent AI hallucinations on critical engineering/commercial data?",
+            "winningAnswer": "Every AI output includes source citations/confidence scores and acts as a decision copilot with 1-click engineer verification rather than blind automation."
+          },
+          {
+            "question": "Can this scale across existing Gamuda systems after the 48-hour hackathon?",
+            "winningAnswer": "Yes — it is containerized for Cloud Run with a clean JSON contract (`shared/api_contract.json`), making integration with SharePoint, BIM exports, or BigQuery straightforward."
+          }
+        ]
+      }
     },
     {
       "id": "idea-2",
